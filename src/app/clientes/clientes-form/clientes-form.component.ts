@@ -52,7 +52,7 @@ export class ClientesFormComponent implements OnInit {
         this.errors = [];
       }, errorResponse => {
         this.success = false;
-        this.errors = ['Erro ao atualizar o cliente.']
+        this.errors = ['Erro ao atualizar o usuário.']
       })
 
     } else {
