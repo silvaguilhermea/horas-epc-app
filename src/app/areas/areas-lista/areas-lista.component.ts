@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AreasService } from 'src/app/areas.service';
 import { Area } from '../area';
 
 @Component({
@@ -15,7 +16,8 @@ export class AreasListaComponent implements OnInit {
   areaSelecionada: Area;
 
   constructor(
-    private router: Router 
+    private router: Router,
+    private areaService: AreasService
   ) { }
 
   ngOnInit(): void {
