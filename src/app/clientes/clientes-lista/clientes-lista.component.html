@@ -1,4 +1,4 @@
-<h1 class="mt-4">Pessoas</h1>
+<h1 class="mt-4">Usuários</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Consulta</li>
 </ol>
@@ -31,8 +31,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Usuário</th>
                         <th>Nome</th>
-                        <th>Cargo</th>
+                        <th>E-mail</th>
                         <th>Data Cadastro</th>
                         <th></th>
                     </tr>
@@ -40,6 +41,7 @@
                 <tbody>
                     <tr *ngFor="let cliente of clientes">
                         <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.nome }}</td>
                         <td>{{ cliente.nome }}</td>
                         <td>{{ cliente.cpf }}</td>
                         <td>{{ cliente.dataCadastro }}</td>

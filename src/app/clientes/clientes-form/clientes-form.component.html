@@ -1,4 +1,4 @@
-<h1 class="mt-4">Pessoas</h1>
+<h1 class="mt-4">Usuários</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
@@ -36,14 +36,28 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Nome: *</label>
-                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome">
+                    <label>Usuário:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="usuario">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Cargo: *</label>
-                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf">
+                    <label>Nome:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="nome">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>E-mail:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="email">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" class="form-control" [(ngModel)]="cliente.cpf" name="password">
                 </div>
             </div>
         </div>
