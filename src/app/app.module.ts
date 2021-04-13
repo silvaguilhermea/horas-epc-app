@@ -9,15 +9,17 @@ import { AppComponent } from './app.component';
 import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component'
 import { ClientesModule } from './clientes/clientes.module';
+import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 import { ProjetosModule } from './projetos/projetos.module';
+import { AreasModule } from './areas/areas.module';
 
 import { ClientesService } from './clientes.service';
 import { ClientesListaComponent } from './clientes/clientes-lista/clientes-lista.component';
-
-import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module'
 import { ServicoPrestadoService } from './servico-prestado.service';
+import { AreasService } from './areas.service';
+ 
 import { LoginComponent } from './login/login.component';
-import { LayoutComponent } from './layout/layout.component'
+import { LayoutComponent } from './layout/layout.component';
 import { AuthService } from './auth.service';
 import { TokenInterceptor } from './token.interceptor';
 
@@ -36,12 +38,14 @@ import { TokenInterceptor } from './token.interceptor';
     TemplateModule,
     ClientesModule,
     ServicoPrestadoModule,
-    ProjetosModule
+    ProjetosModule,
+    AreasModule
   ],
   providers: [
     ClientesService,
     ServicoPrestadoService,
     AuthService,
+    AreasService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
