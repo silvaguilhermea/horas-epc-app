@@ -1,0 +1,75 @@
+<h1 class="mt-4">Projetos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ 'cliente.id' ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+    <form #projetoForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Projeto cadastrado/atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Área:</label>
+                    <input type="text" class="form-control" name="area">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Projeto:</label>
+                    <input type="text" class="form-control" name="projeto">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Setor:</label>
+                    <input type="text" class="form-control" name="setor">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Atividade:</label>
+                    <input type="text" class="form-control" name="atividade">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Equipamento:</label>
+                    <input type="text" class="form-control" name="equipamento">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Ação:</label>
+                    <input type="text" class="form-control" name="acao">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <button type="submit" class="btn btn-success" *ngIf=true>
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+
+                <button type="submit" class="btn btn-primary" *ngIf=false>
+                    <i class="fa fa-sync-alt"></i> Atualizar
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>
