@@ -1,1 +1,50 @@
-<p>areas-form works!</p>
+<h1 class="mt-4">Áreas</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ area.id ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+    <form #areaForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Cadastro salvo/atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" *ngIf="area.id">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" [(ngModel)]="area.id" name="id" class="form-control" disabled="true">
+                </div>
+            </div>
+    
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Área:</label>
+                    <input type="text" class="form-control" [(ngModel)]="area.area" name="area">
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!area.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+    
+                <button type="submit" class="btn btn-primary" *ngIf="area.id">
+                    <i class="fa fa-sync-alt"></i> Atualizar
+                </button>
+    
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
