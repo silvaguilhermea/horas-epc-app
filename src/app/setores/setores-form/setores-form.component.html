@@ -1,9 +1,9 @@
-<h1 class="mt-4">Áreas</h1>
+<h1 class="mt-4">Setores</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">{{ area.id ? 'Edição' : 'Cadastro' }}</li>
+    <li class="breadcrumb-item active">{{ setor.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
 <div class="container">
-    <form #areaForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #setorForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-success" role="alert" *ngIf="success == true">
@@ -16,28 +16,28 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6" *ngIf="area.id">
+            <div class="col-md-6" *ngIf="setor.id">
                 <div class="form-group">
                     <label>ID:</label>
-                    <input type="text" [(ngModel)]="area.id" name="id" class="form-control" disabled="true">
+                    <input type="text" [(ngModel)]="setor.id" name="id" class="form-control" disabled="true">
                 </div>
             </div>
     
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Área:</label>
-                    <input type="text" class="form-control" [(ngModel)]="area.nome" name="area">
+                    <label>Setor:</label>
+                    <input type="text" class="form-control" [(ngModel)]="setor.nome" name="setor">
                 </div>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="col-md-3">
-                <button type="submit" class="btn btn-success" *ngIf="!area.id">
+                <button type="submit" class="btn btn-success" *ngIf="!setor.id">
                     <i class="fa fa-save"></i> Salvar
                 </button>
     
-                <button type="submit" class="btn btn-primary" *ngIf="area.id">
+                <button type="submit" class="btn btn-primary" *ngIf="setor.id">
                     <i class="fa fa-sync-alt"></i> Atualizar
                 </button>
     

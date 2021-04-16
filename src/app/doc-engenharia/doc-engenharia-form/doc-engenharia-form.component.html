@@ -1,9 +1,9 @@
-<h1 class="mt-4">Áreas</h1>
+<h1 class="mt-4">Documentos de Engenharia</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">{{ area.id ? 'Edição' : 'Cadastro' }}</li>
+    <li class="breadcrumb-item active">{{ docEngenharia.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
 <div class="container">
-    <form #areaForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #docEngenhariaForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-success" role="alert" *ngIf="success == true">
@@ -16,28 +16,28 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6" *ngIf="area.id">
+            <div class="col-md-6" *ngIf="docEngenharia.id">
                 <div class="form-group">
                     <label>ID:</label>
-                    <input type="text" [(ngModel)]="area.id" name="id" class="form-control" disabled="true">
+                    <input type="text" [(ngModel)]="docEngenharia.id" name="id" class="form-control" disabled="true">
                 </div>
             </div>
     
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Área:</label>
-                    <input type="text" class="form-control" [(ngModel)]="area.nome" name="area">
+                    <label>Documento:</label>
+                    <input type="text" class="form-control" [(ngModel)]="docEngenharia.nome" name="docEngenharia">
                 </div>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="col-md-3">
-                <button type="submit" class="btn btn-success" *ngIf="!area.id">
+                <button type="submit" class="btn btn-success" *ngIf="!docEngenharia.id">
                     <i class="fa fa-save"></i> Salvar
                 </button>
     
-                <button type="submit" class="btn btn-primary" *ngIf="area.id">
+                <button type="submit" class="btn btn-primary" *ngIf="docEngenharia.id">
                     <i class="fa fa-sync-alt"></i> Atualizar
                 </button>
     
