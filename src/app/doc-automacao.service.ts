@@ -20,7 +20,7 @@ export class DocAutomacaoService {
  
   atualizar( docAutomacao: DocAutomacao ) : Observable<any> {
     return this.http.put<DocAutomacao>(`${this.apiURL}/${docAutomacao.id}`, docAutomacao);
- }
+  }
  
   getDocsAutomacao() : Observable<DocAutomacao[]> {
     return this.http.get<DocAutomacao[]>( this.apiURL );

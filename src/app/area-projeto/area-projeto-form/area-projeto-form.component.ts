@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Area } from "../../areas/area";
+import { AreasService } from "../../areas.service";
+import { AreaProjeto } from "../area-projeto";
+import { AreaProjetoService } from "../../area-projeto.service";
 
 @Component({
   selector: 'app-area-projeto-form',
@@ -7,9 +12,65 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreaProjetoFormComponent implements OnInit {
 
-  constructor() { }
+  areas: Area[] = [];
+  areaProjeto: AreaProjeto;
+  success: boolean = false;
+  errors: String[];
+  id: number;
 
-  ngOnInit(): void {
+  constructor(
+    private areaService: AreasService,
+    private service: AreaProjetoService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.areaProjeto = new AreaProjeto();
+   }
+
+   ngOnInit(): void {
+    let params : Params = this.activatedRoute.params
+    if(params && params.value && params.value.id){
+      this.id = params.value.id;
+      this.service
+      .getAreaProjetoById( this.id )
+      .subscribe(
+        response => this.areaProjeto = response,
+        errorResponse => this.areaProjeto = new AreaProjeto()
+      )
+    }
+  }
+
+  voltarParaListagem() {
+    this.router.navigate(['area-projeto/lista']);
+  }
+
+  onSubmit(){
+    if( this.id ) {
+
+      this.service
+      .atualizar( this.areaProjeto )
+      .subscribe( response => {
+        this.success = true;
+        this.errors = [];
+      }, errorResponse => {
+        this.success = false;
+        this.errors = ['Erro ao atualizar o projeto.']
+      })
+
+    } else {
+
+      this.service.salvar(this.areaProjeto)
+      .subscribe( response => {
+        this.success = true;
+        this.errors = [];
+        this.areaProjeto = response;
+        console.log(response);
+      } , errorResponse => {
+        this.success = false;
+        this.errors = errorResponse.error.errors;
+      })
+
+    }
   }
 
 }
