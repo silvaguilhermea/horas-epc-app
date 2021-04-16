@@ -28,6 +28,8 @@ import { DocEngenhariaModule } from './doc-engenharia/doc-engenharia.module';
 import { DocEngenhariaService } from './doc-engenharia.service';
 import { DocAutomacaoModule } from './doc-automacao/doc-automacao.module';
 import { DocAutomacaoService } from './doc-automacao.service';
+import { AreaProjetoModule } from './area-projeto/area-projeto.module';
+import { AreaProjetoService } from './area-projeto.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { DocAutomacaoService } from './doc-automacao.service';
     AreasModule,
     SetoresModule,
     DocEngenhariaModule,
-    DocAutomacaoModule
+    DocAutomacaoModule,
+    AreaProjetoModule
   ],
   providers: [
     ClientesService,
@@ -58,6 +61,7 @@ import { DocAutomacaoService } from './doc-automacao.service';
     SetoresService,
     DocEngenhariaService,
     DocAutomacaoService,
+    AreaProjetoService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
