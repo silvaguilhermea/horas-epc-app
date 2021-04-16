@@ -22,6 +22,10 @@ import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthService } from './auth.service';
 import { TokenInterceptor } from './token.interceptor';
+import { SetoresModule } from './setores/setores.module';
+import { SetoresService } from './setores.service';
+import { DocEngenhariaModule } from './doc-engenharia/doc-engenharia.module';
+import { DocEngenhariaService } from './doc-engenharia.service';
 
 @NgModule({
   declarations: [
@@ -39,13 +43,17 @@ import { TokenInterceptor } from './token.interceptor';
     ClientesModule,
     ServicoPrestadoModule,
     ProjetosModule,
-    AreasModule
+    AreasModule,
+    SetoresModule,
+    DocEngenhariaModule
   ],
   providers: [
     ClientesService,
     ServicoPrestadoService,
     AuthService,
     AreasService,
+    SetoresService,
+    DocEngenhariaService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

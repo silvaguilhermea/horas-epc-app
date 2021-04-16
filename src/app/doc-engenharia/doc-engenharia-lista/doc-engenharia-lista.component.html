@@ -1,4 +1,4 @@
-<h1 class="mt-4">Áreas</h1>
+<h1 class="mt-4">Documentos de Engenharia</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Consulta</li>
 </ol>
@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-2">
             <button class="btn btn-warning" (click)="novoCadastro()">
-                <i class="fa fa-plus"></i> Nova
+                <i class="fa fa-plus"></i> Novo
             </button>
         </div>
     </div>
@@ -31,21 +31,21 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Área</th>
+                        <th>Documento</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let area of areas">
-                        <td>{{ area.id }}</td>
-                        <td>{{ area.nome }}</td>
+                    <tr *ngFor="let docEngenharia of docsEngenharia">
+                        <td>{{ docEngenharia.id }}</td>
+                        <td>{{ docEngenharia.nome }}</td>
                         <td>
                             <button class="btn btn-primary" 
-                                    routerLink="/areas/form/{{ area.id }}">
+                                    routerLink="/doc-engenharia/form/{{ docEngenharia.id }}">
                                 <i class="fa fa-edit"></i>
                             </button>
                             
-                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(area)"
+                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(docEngenharia)"
                                     data-toggle="modal" data-target="#modalDelecao">
                                 <i class="fa fa-trash"></i>
                             </button>
@@ -62,11 +62,11 @@
                 <div class="modal-header">
                     <h4>Confirmação</h4>
                 </div>
-                <div class="modal-body" *ngIf="areaSelecionada">
-                    Confirma a deleção do cadastro da área {{ areaSelecionada.nome }}?
+                <div class="modal-body" *ngIf="docEngenhariaSelecionado">
+                    Confirma a deleção do cadastro do documento {{ docEngenhariaSelecionado.nome }}?
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" (click)="deletarArea()" data-dismiss="modal">Confirmar</button>
+                    <button class="btn btn-success" (click)="deletarDocEngenharia()" data-dismiss="modal">Confirmar</button>
                     <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>

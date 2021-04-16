@@ -12,18 +12,18 @@ export class AreasService {
 
   apiURL: string = environment.apiURLBase + '/api/areas';
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
   salvar( area: Area ) : Observable<Area> {
     return this.http.post<Area>( `${this.apiURL}` , area );
   }
  
   atualizar( area: Area ) : Observable<any> {
-   return this.http.put<Area>(`${this.apiURL}/${area.id}`, area);
+    return this.http.put<Area>(`${this.apiURL}/${area.id}`, area);
  }
  
   getAreas() : Observable<Area[]> {
-   return this.http.get<Area[]>( this.apiURL );
+    return this.http.get<Area[]>( this.apiURL );
   }
  
   getAreaById(id: number) : Observable<Area> {

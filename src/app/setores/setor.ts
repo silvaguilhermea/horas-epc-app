@@ -1,4 +1,4 @@
-export class Area {
+export class Setor {
     id?: number;
     nome?: string;
 }
