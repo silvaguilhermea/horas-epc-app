@@ -1,0 +1,50 @@
+<h1 class="mt-4">Documentos de Automação</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ docAutomacao.id ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+    <form #docAutomacaoForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Cadastro salvo/atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" *ngIf="docAutomacao.id">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" [(ngModel)]="docAutomacao.id" name="id" class="form-control" disabled="true">
+                </div>
+            </div>
+    
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Documento:</label>
+                    <input type="text" class="form-control" [(ngModel)]="docAutomacao.nome" name="docAutomacao">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!docAutomacao.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+    
+                <button type="submit" class="btn btn-primary" *ngIf="docAutomacao.id">
+                    <i class="fa fa-sync-alt"></i> Atualizar
+                </button>
+    
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
