@@ -21,6 +21,9 @@ export class AreasListaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.areaService
+      .getAreas()
+      .subscribe( resposta => {this.areas = resposta, console.log(resposta)} );
   }
 
   novoCadastro(){

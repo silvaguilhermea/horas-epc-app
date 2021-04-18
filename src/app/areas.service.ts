@@ -10,7 +10,7 @@ import { environment } from '../environments/environment'
 })
 export class AreasService {
 
-  apiURL: string = environment.apiURLBase + '/api/areas';
+  apiURL: string = 'http://localhost:8081/areas';
 
   constructor( private http: HttpClient ) { }
 

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AreaProjetoBusca } from "./areaProjetoBusca";
+import { AreaProjetoService } from "../../area-projeto.service";
+import { Area } from 'src/app/areas/area';
+import { AreasService } from "../../areas.service";
+import { AreaProjeto } from "../area-projeto";
 
 @Component({
   selector: 'app-area-projeto-lista',
@@ -7,9 +14,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreaProjetoListaComponent implements OnInit {
 
-  constructor() { }
+  area: string;
+  areaSelecionada: Area;
+  areas: Area[] = [];
+  lista: AreaProjetoBusca[];
+  message: string;
+
+  constructor(
+    private router: Router,
+    private service: AreaProjetoService,
+    private serviceAreas: AreasService
+  ) { 
+    this.serviceAreas.getAreas().subscribe( response => {
+      this.areas = response;
+    });
+   }
 
   ngOnInit(): void {
+  }
+
+  novoCadastro(){
+    this.router.navigate(['/area-projeto/form']);
+  }
+
+  consultar() {
+    this.service
+      .buscar( this.area )
+      .subscribe( response => {
+        this.lista = response;
+        if( this.lista.length <= 0 ){
+          this.message = "Nenhum registro encontrado.";
+        } else {
+          this.message = '';
+        }
+      });
+  }
+
+  preparaDelecao(areaProjeto: AreaProjetoBusca){
+
+  }
+
+  deletarAreaProjeto(){
+    
   }
 
 }

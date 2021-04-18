@@ -1,1 +1,79 @@
-<p>area-projeto-form works!</p>
+<h1 class="mt-4">Projetos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Novo</li>
+</ol>
+<div class="container">
+    <form #form="ngForm" (submit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Projeto cadastrado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Área: </label>
+                    <select class="form-control"
+                            [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="areas">
+                        <option value="">Selecione...</option>
+                        <option *ngFor="let area of areas" 
+                                [ngValue]="area">
+                            {{ area.nome }}
+                        </option>
+                    </select>
+                </div>
+            </div> 
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Projeto:</label>
+                    <input type="text" class="form-control" [(ngModel)]="areaProjeto.projeto" name="projeto">
+                </div>
+            </div> 
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data Inicial:</label>
+                    <input class="form-control" 
+                            [(ngModel)]="areaProjeto.dataInicio" type="date" 
+                            name="data-inicio" id="inputDataInicio">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data Final (Planejado):</label>
+                    <input class="form-control" 
+                            [(ngModel)]="areaProjeto.dataFimPlanejado" type="date" 
+                            name="data-fim-plan" id="inputDataFinalPlan">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i>
+                    Salvar
+                </button>
+                <button type="button" 
+                    routerLink="/area-projeto/lista"
+                    class="btn btn-danger ml-1">
+                    <i class="fa fa-arrow-alt-circle-left"></i>
+                    Voltar
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
