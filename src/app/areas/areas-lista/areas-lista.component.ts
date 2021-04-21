@@ -35,7 +35,15 @@ export class AreasListaComponent implements OnInit {
   }
 
   deletarArea(){
-
+    this.areaService
+    .deletar( this.areaSelecionada )
+    .subscribe(
+      response => {
+        this.mensagemSucesso = 'Área deletada com sucesso!',
+        this.ngOnInit();
+      },
+      erro => this.mensagemErro = 'Ocorreu um erro ao deletar a área.'
+    )
   }
 
 }

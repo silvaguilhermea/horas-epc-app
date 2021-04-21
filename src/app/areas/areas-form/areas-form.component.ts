@@ -41,6 +41,7 @@ export class AreasFormComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.area)
     if( this.id ) {
 
       this.service
