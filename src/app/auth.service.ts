@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 })
 export class AuthService {
 
-  apiURL: string = environment.apiURLBase + "/api/usuarios"
+  apiURL: string = environment.apiURLBase + "/login"
   tokenURL: string = environment.apiURLBase + environment.obterTokenUrl
   clientId: string = environment.clientId;
   clientSecret: string = environment.clientSecret;
@@ -24,6 +24,8 @@ export class AuthService {
 
   obterToken(){
     const tokenString = localStorage.getItem('access_token')
+    console.log("Obter Token");
+    console.log(tokenString);
     if(tokenString){
       const token = JSON.parse(tokenString).access_token
       return token;
@@ -46,8 +48,10 @@ export class AuthService {
 
   isAuthenticated(): boolean{
     const token = this.obterToken();
+    console.log("IsAuthenticated");
     if( token ) {
       const expired = this.jwtHelperService.isTokenExpired( token )
+      console.log(expired);
       return !expired;
     }
     return false;
@@ -58,15 +62,24 @@ export class AuthService {
   }
 
   tentarLogar( username: string, password: string ) : Observable<any> {
-    const params = new HttpParams()
-                        .set('username', username)
-                        .set('password', password)
+    const usuario = new Usuario()
+    usuario.email = username;
+    usuario.senha = password;
+
+    /*const params = new HttpParams()
+                        .set('email', username)
+                        .set('senha', password)
                         .set('grant_type', 'password')
 
     const headers = {
       'Authorization': 'Basic ' + btoa(`${this.clientId}:${this.clientSecret}`),
       'Content-Type': 'application/x-www-form-urlencoded'
-    }
-    return this.http.post( this.tokenURL, params.toString(), { headers } );
+    }*/
+    return this.http.post<Usuario>( `${this.apiURL}` , usuario,
+    {
+        observe: 'response',
+        responseType: 'json'
+    });
+    //return this.http.post( this.tokenURL, params.toString() );
   }
 }

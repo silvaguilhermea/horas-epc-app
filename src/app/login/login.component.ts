@@ -10,8 +10,8 @@ import { Usuario } from './usuario';
 })
 export class LoginComponent {
 
-  username: string;
-  password: string;
+  email: string;
+  senha: string;
   cadastrando: boolean;
   mensagemSucesso: string;
   errors: String[];
@@ -24,12 +24,15 @@ export class LoginComponent {
   onSubmit() {
     
     this.authService
-          .tentarLogar( this.username, this.password )
+          .tentarLogar( this.email, this.senha )
           .subscribe( response => {
-            const access_token = JSON.stringify( response );
+            console.log(response.headers.get('Authorization'));
+            const access_token = JSON.stringify( response.headers.get('Authorization') );
             localStorage.setItem('access_token', access_token)
             this.router.navigate(['/home'])
           }, errorResponse => {
+            console.log(errorResponse.headers.get('Authorization'));
+            console.log(errorResponse['body']);
             this.errors = ['Usuário e/ou senha incorreto(s).']
           })
     
@@ -46,15 +49,15 @@ export class LoginComponent {
 
   cadastrar() {
     const usuario: Usuario = new Usuario();
-    usuario.username = this.username;
-    usuario.password = this.password;
+    usuario.email = this.email;
+    usuario.senha = this.senha;
     this.authService
         .salvar(usuario)
         .subscribe( response => {
             this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue o login.";
             this.cadastrando = false;
-            this.username = '';
-            this.password = '';
+            this.email = '';
+            this.senha = '';
             this.errors = [];
         }, errorResponse => {
             this.mensagemSucesso = "";
