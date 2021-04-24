@@ -14,14 +14,17 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    // tokenString = localStorage.getItem('access_token');
-    const tokenString = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3aWxsaWFtLmdvbmNhbHZlc0BidXRhbnRhbi5nb3YuYnIiLCJleHAiOjE2MTkwNTYzMjF9.qgywAGvd2rMmRRMxvsC_kLXF9hYgGYIcNnfT_RYdrMLp8jmiCfmscmg9PZhaNciz0tpz2oW3Rw9qKty3XKHklQ';
-    console.log(tokenString);
+    const tokenString_old = localStorage.getItem('access_token');
+    const tokenString = tokenString_old?.replace("Bearer ", "");
+    console.log("tokenString: " + tokenString)
+    //const tokenString = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3aWxsaWFtLmdvbmNhbHZlc0BidXRhbnRhbi5nb3YuYnIiLCJleHAiOjE2MTkwNTYzMjF9.qgywAGvd2rMmRRMxvsC_kLXF9hYgGYIcNnfT_RYdrMLp8jmiCfmscmg9PZhaNciz0tpz2oW3Rw9qKty3XKHklQ';
     const url = request.url;
 
-    if( tokenString && !url.endsWith('/login') ){
+    if( tokenString && url.endsWith('/login') ){
       const token = JSON.parse(tokenString);
-      const jwt = token.access_token;
+      console.log("token: " + token)
+      const jwt = token;
+      console.log("jwt: " + jwt)
       request = request.clone({
         setHeaders : {
           Authorization: jwt

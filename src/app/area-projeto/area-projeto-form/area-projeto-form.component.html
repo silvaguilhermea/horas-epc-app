@@ -26,7 +26,7 @@
                         <option value="">Selecione...</option>
                         <option *ngFor="let area of areas" 
                                 [ngValue]="area">
-                            {{ area.nome }}
+                            {{ area?.nmArea }}
                         </option>
                     </select>
                 </div>

@@ -22,9 +22,13 @@ export class AreaProjetoFormComponent implements OnInit {
     private areaService: AreasService,
     private service: AreaProjetoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private serviceAreas: AreasService
   ) {
     this.areaProjeto = new AreaProjeto();
+    this.serviceAreas.getAreas().subscribe( response => {
+      this.areas = response;
+    });
    }
 
    ngOnInit(): void {

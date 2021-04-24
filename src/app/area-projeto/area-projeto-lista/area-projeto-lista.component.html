@@ -11,7 +11,7 @@
                 <select [(ngModel)]="area" class="form-control" name="area">
                     <option value="">Selecione...</option>
                     <option *ngFor="let area of areas" [value]="areaSelecionada">
-                        {{ area.nome }}
+                        {{ area?.nmArea }}
                     </option>
                 </select>
             </div>
@@ -48,10 +48,10 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of lista">
-                        <td>{{ item.area.nome }}</td>
-                        <td>{{ item.projeto }}</td>
-                        <td>{{ item.dataInicio }}</td>
-                        <td>{{ item.dataFimPlanejado }}</td>
+                        <td>{{ item.area.nmArea }}</td>
+                        <td>{{ item?.projeto }}</td>
+                        <td>{{ item?.dataInicio }}</td>
+                        <td>{{ item?.dataFimPlanejado }}</td>
                         <td>
                             <button class="btn btn-primary" 
                                     routerLink="/area-projeto/form/{{ item.id }}">

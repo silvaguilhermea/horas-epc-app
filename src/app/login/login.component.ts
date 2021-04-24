@@ -26,11 +26,14 @@ export class LoginComponent {
     this.authService
           .tentarLogar( this.email, this.senha )
           .subscribe( response => {
+            console.log("Response tentarLogar() OK");
             console.log(response.headers.get('Authorization'));
-            const access_token = JSON.stringify( response.headers.get('Authorization') );
+            const access_token_old = JSON.stringify( response.headers.get('Authorization') );
+            const access_token = access_token_old.replace("Bearer ","");
             localStorage.setItem('access_token', access_token)
             this.router.navigate(['/home'])
           }, errorResponse => {
+            console.log("Response tentarLogar() erro");
             console.log(errorResponse.headers.get('Authorization'));
             console.log(errorResponse['body']);
             this.errors = ['Usuário e/ou senha incorreto(s).']

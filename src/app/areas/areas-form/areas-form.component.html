@@ -19,25 +19,25 @@
             <div class="col-md-6" *ngIf="area?.id">
                 <div class="form-group">
                     <label>ID:</label>
-                    <input type="text" [(ngModel)]="area?.id" name="id" class="form-control" disabled="true">
+                    <input type="text" [(ngModel)]="area.id" name="id" class="form-control" disabled="true">
                 </div>
             </div>
     
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Área:</label>
-                    <input type="text" class="form-control" [(ngModel)]="area?.nmArea" name="area">
+                    <input type="text" class="form-control" [(ngModel)]="area.nmArea" name="area">
                 </div>
             </div>
         </div>
     
         <div class="row">
             <div class="col-md-3">
-                <button type="submit" class="btn btn-success" *ngIf="!area?.id">
+                <button type="submit" class="btn btn-success" *ngIf="!area.id">
                     <i class="fa fa-save"></i> Salvar
                 </button>
     
-                <button type="submit" class="btn btn-primary" *ngIf="area?.id">
+                <button type="submit" class="btn btn-primary" *ngIf="area.id">
                     <i class="fa fa-sync-alt"></i> Atualizar
                 </button>
     

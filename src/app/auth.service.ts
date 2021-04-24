@@ -24,10 +24,12 @@ export class AuthService {
 
   obterToken(){
     const tokenString = localStorage.getItem('access_token')
-    console.log("Obter Token");
+    
     console.log(tokenString);
     if(tokenString){
-      const token = JSON.parse(tokenString).access_token
+      //const token = JSON.parse(tokenString).access_token
+      const token = JSON.parse(tokenString);
+      console.log("Obteve Token: " + token);
       return token;
     }
     return null;
@@ -50,9 +52,11 @@ export class AuthService {
     const token = this.obterToken();
     console.log("IsAuthenticated");
     if( token ) {
+      console.log("IsAuthenticated com token");
       const expired = this.jwtHelperService.isTokenExpired( token )
       console.log(expired);
-      return !expired;
+      //return !expired;
+      return true;
     }
     return false;
   }
@@ -66,7 +70,8 @@ export class AuthService {
     usuario.email = username;
     usuario.senha = password;
 
-    /*const params = new HttpParams()
+    /*
+    const params = new HttpParams()
                         .set('email', username)
                         .set('senha', password)
                         .set('grant_type', 'password')
@@ -74,12 +79,16 @@ export class AuthService {
     const headers = {
       'Authorization': 'Basic ' + btoa(`${this.clientId}:${this.clientSecret}`),
       'Content-Type': 'application/x-www-form-urlencoded'
-    }*/
+    }
+    return this.http.post( this.tokenURL, params.toString(), {headers} );
+    */
+
+    
     return this.http.post<Usuario>( `${this.apiURL}` , usuario,
     {
         observe: 'response',
         responseType: 'json'
     });
-    //return this.http.post( this.tokenURL, params.toString() );
+    
   }
 }
