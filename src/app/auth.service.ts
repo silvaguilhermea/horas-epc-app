@@ -42,7 +42,9 @@ export class AuthService {
   getUsuarioAutenticado(){
     const token = this.obterToken();
     if( token ){
+      console.log("Token do getUsuarioAutenticado: " + token)
       const usuario = this.jwtHelperService.decodeToken( token ).user_name
+      console.log("Usuário do getUsuarioAutenticado: " + usuario)
       return usuario;
     }
     return null;
@@ -50,7 +52,6 @@ export class AuthService {
 
   isAuthenticated(): boolean{
     const token = this.obterToken();
-    console.log("IsAuthenticated");
     if( token ) {
       console.log("IsAuthenticated com token");
       const expired = this.jwtHelperService.isTokenExpired( token )
